@@ -1,36 +1,323 @@
 {
-  "name": "Кафе «Название»",
+  "name": "Кафе",
   "tagline": "Меню",
-  "phone": "+7 (900) 000-00-00",
-  "address": "г. Город, ул. Улица, 1",
+  "phone": "8 (928) 319-89-16",
+  "address": "Терекли-Мектеб, ул. Северная, 9",
   "hours": [
-    { "days": "Пн–Пт", "time": "11:00 – 22:00" },
-    { "days": "Сб–Вс", "time": "11:00 – 23:00" }
+    { "days": "Пн", "time": "Выходной" },
+    { "days": "Вт–Вс", "time": "11:00 – 22:00" }
   ],
-  "legal": "ИП Фамилия И. О., ОГРНИП 000000000000000. Цены и ассортимент носят информационный характер и не являются публичной офертой.",
+  "legal": "Цены и ассортимент носят информационный характер и не являются публичной офертой.",
   "categories": [
     {
       "id": "pizza",
       "name": "Пицца",
       "items": [
         {
+          "id": "gryadnaya",
+          "name": "Грибная",
+          "description": "Сыр, грибы шампиньоны.",
+          "variants": [{ "id": "std", "label": "", "price": 350 }]
+        },
+        {
           "id": "margherita",
           "name": "Маргарита",
-          "description": "Томатный соус, моцарелла, базилик.",
-          "photo": "img/margherita.jpg",
-          "variants": [
-            { "id": "25", "label": "25 см", "price": 500 },
-            { "id": "30", "label": "30 см", "price": 700 }
-          ]
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 350 }]
+        },
+        {
+          "id": "shashlychnaya",
+          "name": "Шашлычная",
+          "description": "Говядина, сыр, грибы, сливочный соус.",
+          "variants": [{ "id": "std", "label": "", "price": 350 }]
+        },
+        {
+          "id": "zhulien",
+          "name": "Жульен",
+          "description": "Сыр, грибы, курица, сливочный соус.",
+          "variants": [{ "id": "std", "label": "", "price": 350 }]
+        },
+        {
+          "id": "cezar",
+          "name": "Цезарь",
+          "description": "Сыр, курица, лист салата, черри, пармезан.",
+          "variants": [{ "id": "std", "label": "", "price": 390 }]
+        },
+        {
+          "id": "myasnaya",
+          "name": "Мясная",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 350 }]
+        },
+        {
+          "id": "assorti",
+          "name": "Ассорти",
+          "description": "Курица, говядина, сыр, грибы, колбаса.",
+          "variants": [{ "id": "std", "label": "", "price": 370 }]
+        },
+        {
+          "id": "kurinaya_s_gribami",
+          "name": "Куриная с грибами",
+          "description": "Сыр, грибы, курица.",
+          "variants": [{ "id": "std", "label": "", "price": 370 }]
         },
         {
           "id": "pepperoni",
           "name": "Пепперони",
-          "description": "Пепперони, моцарелла, томатный соус.",
-          "variants": [
-            { "id": "25", "label": "25 см", "price": 550 },
-            { "id": "30", "label": "30 см", "price": 750 }
-          ]
+          "description": "Сыр, колбаса халяль.",
+          "variants": [{ "id": "std", "label": "", "price": 350 }]
+        },
+        {
+          "id": "kurinaya",
+          "name": "Куриная",
+          "description": "Сыр, курица.",
+          "variants": [{ "id": "std", "label": "", "price": 350 }]
+        },
+        {
+          "id": "apiti",
+          "name": "Апити",
+          "description": "Курица, говядина, сыр, сливки, помидор.",
+          "variants": [{ "id": "std", "label": "", "price": 560 }]
+        },
+        {
+          "id": "chetyre_syra",
+          "name": "Четыре сыра",
+          "description": "Пармезан, моцарелла, дорблю, гауда.",
+          "variants": [{ "id": "std", "label": "", "price": 390 }]
+        },
+        {
+          "id": "gavayskaya",
+          "name": "Гавайская",
+          "description": "Сыр, ананас, курица.",
+          "variants": [{ "id": "std", "label": "", "price": 370 }]
+        },
+        {
+          "id": "bay_ata",
+          "name": "Бай-ата",
+          "description": "Сыр, говядина, болгарский перец, красный лук, помидор.",
+          "variants": [{ "id": "std", "label": "", "price": 390 }]
+        },
+        {
+          "id": "siciliyskaya",
+          "name": "Сицилийская",
+          "description": "Курица, говядина, острый соус, грибы, колбаса, сыр.",
+          "variants": [{ "id": "std", "label": "", "price": 370 }]
+        },
+        {
+          "id": "oysi",
+          "name": "Ойси",
+          "description": "Сыр, лосось, унаги соус, кимчи соус, тобико, зелёный лук.",
+          "variants": [{ "id": "std", "label": "", "price": 470 }]
+        },
+        {
+          "id": "losos_s_gribami",
+          "name": "Лосось с грибами",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 470 }]
+        },
+        {
+          "id": "kurica_s_avokado",
+          "name": "Курица с авокадо",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 370 }]
+        }
+      ]
+    },
+    {
+      "id": "rolls_cold",
+      "name": "Роллы холодные",
+      "items": [
+        {
+          "id": "california_salmon",
+          "name": "Калифорния с лососем",
+          "description": "Лосось, майонез, огурец, рис.",
+          "variants": [{ "id": "std", "label": "", "price": 350 }]
+        },
+        {
+          "id": "california_shrimp",
+          "name": "Калифорния с креветкой",
+          "description": "Креветка, майонез, огурец, рис.",
+          "variants": [{ "id": "std", "label": "", "price": 350 }]
+        },
+        {
+          "id": "california_crab",
+          "name": "Калифорния с крабом",
+          "description": "Краб, майонез, огурец, рис.",
+          "variants": [{ "id": "std", "label": "", "price": 350 }]
+        },
+        {
+          "id": "philadelphia_shik",
+          "name": "Филадельфия шик",
+          "description": "Сливочный сыр, лосось, огурец, авокадо, рис.",
+          "variants": [{ "id": "std", "label": "", "price": 380 }]
+        },
+        {
+          "id": "philadelphia_classic",
+          "name": "Филадельфия классик",
+          "description": "Сливочный сыр, лосось, огурец, рис.",
+          "variants": [{ "id": "std", "label": "", "price": 350 }]
+        },
+        {
+          "id": "philadelphia_light",
+          "name": "Филадельфия лайт",
+          "description": "Сливочный сыр, лосось, рис.",
+          "variants": [{ "id": "std", "label": "", "price": 340 }]
+        },
+        {
+          "id": "roll_nezhny",
+          "name": "Ролл нежный",
+          "description": "Креветка, огурец, майонез, рис, сливочно-сырная шапочка.",
+          "variants": [{ "id": "std", "label": "", "price": 350 }]
+        },
+        {
+          "id": "philadelphia_royal",
+          "name": "Филадельфия королевская",
+          "description": "Огурец, лосось, рис, авокадо, тобико, сливочно-сырная шапочка.",
+          "variants": [{ "id": "std", "label": "", "price": 390 }]
+        },
+        {
+          "id": "canada_roll",
+          "name": "Канада ролл",
+          "description": "Лосось, огурец, сливочный сыр, угорь, рис.",
+          "variants": [{ "id": "std", "label": "", "price": 350 }]
+        },
+        {
+          "id": "vegetable_roll",
+          "name": "Овощной ролл",
+          "description": "Огурец, паприка, авокадо, лист салата, помидор, рис.",
+          "variants": [{ "id": "std", "label": "", "price": 340 }]
+        },
+        {
+          "id": "oysi_roll",
+          "name": "Ойси",
+          "description": "Огурец, креветка, сливочный сыр, лосось, тобико, зеленый лук, рис.",
+          "variants": [{ "id": "std", "label": "", "price": 390 }]
+        },
+        {
+          "id": "black_optics",
+          "name": "Блэк оптикс",
+          "description": "Креветка, огурец, соус цезарь, тобико, сырная шапочка, рис.",
+          "variants": [{ "id": "std", "label": "", "price": 400 }]
+        },
+        {
+          "id": "black_magic",
+          "name": "Блэк мейджик",
+          "description": "Сливочный сыр, огурец, курица, рис.",
+          "variants": [{ "id": "std", "label": "", "price": 400 }]
+        },
+        {
+          "id": "black_star",
+          "name": "Блэк стар",
+          "description": "Сыр моцарелла, угорь, огурец, рис.",
+          "variants": [{ "id": "std", "label": "", "price": 400 }]
+        },
+        {
+          "id": "miami",
+          "name": "Маями",
+          "description": "Креветки, краб, лосось.",
+          "variants": [{ "id": "std", "label": "", "price": 350 }]
+        },
+        {
+          "id": "arizona_shrimp",
+          "name": "Аризона с креветкой",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 350 }]
+        },
+        {
+          "id": "arizona_crab",
+          "name": "Аризона с крабом",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 350 }]
+        }
+      ]
+    },
+    {
+      "id": "rolls_hot",
+      "name": "Роллы горячие",
+      "items": [
+        {
+          "id": "cezar_chicken_hot",
+          "name": "Цезарь с курицей",
+          "description": "Курица, помидор, моцарелла, соус цезарь, рис.",
+          "variants": [{ "id": "std", "label": "", "price": 310 }]
+        },
+        {
+          "id": "hamanishi_roll",
+          "name": "Хаманиши ролл",
+          "description": "Огурец, угорь, креветка, сливочный сыр, рис.",
+          "variants": [{ "id": "std", "label": "", "price": 360 }]
+        },
+        {
+          "id": "spice_chicken",
+          "name": "Спайс с курицей",
+          "description": "Курица, помидор, сливочный сыр, спайс соус, унаги соус, рис.",
+          "variants": [{ "id": "std", "label": "", "price": 340 }]
+        },
+        {
+          "id": "hot_shik",
+          "name": "Горячий шик",
+          "description": "Огурец, лосось, сливочный сыр, унаги соус, спайс соус, рис.",
+          "variants": [{ "id": "std", "label": "", "price": 390 }]
+        },
+        {
+          "id": "cezar_shrimp_hot",
+          "name": "Цезарь с креветкой",
+          "description": "Огурец, креветка, сливочный сыр, соус кимчи, рис.",
+          "variants": [{ "id": "std", "label": "", "price": 340 }]
+        },
+        {
+          "id": "yaposha",
+          "name": "Япоша",
+          "description": "Огурец, сливочный сыр, лосось, тобико, рис.",
+          "variants": [{ "id": "std", "label": "", "price": 340 }]
+        }
+      ]
+    },
+    {
+      "id": "rolls_baked",
+      "name": "Роллы запечённые",
+      "items": [
+        {
+          "id": "unagda_dzu_maku",
+          "name": "Унагда дзю маку",
+          "description": "Угорь, краб, огурец, кимчи, рис, шапочка: моцарелла, майонез, тобико.",
+          "variants": [{ "id": "std", "label": "", "price": 390 }]
+        },
+        {
+          "id": "rumyanyy_zapechennyy",
+          "name": "Румяный запечённый",
+          "description": "Креветка, краб, огурец, сливки, сыр, рис, шапочка: моцарелла, майонез, тобико.",
+          "variants": [{ "id": "std", "label": "", "price": 390 }]
+        },
+        {
+          "id": "zapechennyy_cezar",
+          "name": "Запечённый цезарь",
+          "description": "Курица, соус цезарь, помидор, рис, шапочка: моцарелла, майонез.",
+          "variants": [{ "id": "std", "label": "", "price": 390 }]
+        },
+        {
+          "id": "hot_crab",
+          "name": "Горячий краб",
+          "description": "Огурец, сливочный сыр, тобико, рис, шапочка: краб, спайс соус.",
+          "variants": [{ "id": "std", "label": "", "price": 390 }]
+        },
+        {
+          "id": "snezhnyy_roll",
+          "name": "Ролл снежный",
+          "description": "Огурец, сливки, сыр, креветка, тобико, рис, шапочка: лосось, майонез, васаби.",
+          "variants": [{ "id": "std", "label": "", "price": 390 }]
+        }
+      ]
+    },
+    {
+      "id": "salads",
+      "name": "Салаты",
+      "items": [
+        {
+          "id": "salad_avocado",
+          "name": "Салат с авокадо",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 320 }]
         }
       ]
     },
@@ -39,34 +326,373 @@
       "name": "Закуски",
       "items": [
         {
+          "id": "burger_beef",
+          "name": "Бургер с говядиной",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 250 }]
+        },
+        {
+          "id": "burger_chicken",
+          "name": "Бургер с курицей",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 230 }]
+        },
+        {
+          "id": "burger_chicken_mini",
+          "name": "Бургер с курицей мини",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 150 }]
+        },
+        {
+          "id": "burger_beef_mini",
+          "name": "Бургер с говядиной мини",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 170 }]
+        },
+        {
           "id": "nuggets",
           "name": "Наггетсы",
-          "description": "Куриное филе в хрустящей панировке, соус на выбор.",
-          "variants": [
-            { "id": "6", "label": "6 шт", "price": 200 },
-            { "id": "10", "label": "10 шт", "price": 300 }
-          ]
+          "description": "",
+          "variants": [{ "id": "std", "label": "6шт", "price": 170 }]
         },
         {
           "id": "fries",
           "name": "Картофель фри",
           "description": "",
-          "variants": [{ "id": "1", "label": "", "price": 150 }]
+          "variants": [{ "id": "std", "label": "200 г", "price": 130 }]
+        },
+        {
+          "id": "country_potato",
+          "name": "Картофель по-деревенски",
+          "description": "",
+          "variants": [{ "id": "std", "label": "200 г", "price": 140 }]
+        },
+        {
+          "id": "sprices_hot",
+          "name": "Сприсы острые",
+          "description": "",
+          "variants": [{ "id": "std", "label": "6шт", "price": 240 }]
+        },
+        {
+          "id": "shrimp_batter",
+          "name": "Креветки в кляре",
+          "description": "",
+          "variants": [{ "id": "std", "label": "6шт", "price": 290 }]
+        },
+        {
+          "id": "wings_special",
+          "name": "Крылышки особые",
+          "description": "",
+          "variants": [
+            { "id": "12", "label": "12 шт", "price": 440 },
+            { "id": "18", "label": "18 шт", "price": 660 }
+          ]
+        },
+        {
+          "id": "shawarma_batter",
+          "name": "Шаурма в кляре",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 230 }]
+        },
+        {
+          "id": "Twister",
+          "name": "Твистер",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 250 }]
+        },
+        {
+          "id": "sweet_roll",
+          "name": "Сладкий ролл",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 220 }]
+        },
+        {
+          "id": "sandwich",
+          "name": "Сэндвич",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 210 }]
         }
       ]
     },
     {
-      "id": "drinks",
-      "name": "Напитки",
+      "id": "hot_dishes",
+      "name": "Горячие блюда",
       "items": [
         {
-          "id": "lemonade",
-          "name": "Домашний лимонад",
-          "description": "Лимон, мята, лёд.",
-          "variants": [
-            { "id": "300", "label": "300 мл", "price": 150 },
-            { "id": "500", "label": "500 мл", "price": 220 }
-          ]
+          "id": "pelmeni",
+          "name": "Пельмени",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 270 }]
+        },
+        {
+          "id": "khinkal_moskovskiy",
+          "name": "Хинкал (московский)",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 570 }]
+        },
+        {
+          "id": "khinkal_zalushka",
+          "name": "Хинкал (залушка)",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 570 }]
+        },
+        {
+          "id": "manty",
+          "name": "Манты",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 450 }]
+        },
+        {
+          "id": "steik",
+          "name": "Стейк",
+          "description": "",
+          "variants": [{ "id": "std", "label": "100 г", "price": 180 }]
+        },
+        {
+          "id": "dorado",
+          "name": "Дорадо",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 720 }]
+        }
+      ]
+    },
+    {
+      "id": "desserts",
+      "name": "Десерты",
+      "items": [
+        {
+          "id": "donut",
+          "name": "Пончик",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 120 }]
+        },
+        {
+          "id": "cheesecake",
+          "name": "Чизкейк",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 150 }]
+        },
+        {
+          "id": "alpen_gold",
+          "name": "Шоколад Альпенгольд",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 120 }]
+        },
+        {
+          "id": "rossiya_shchedraya",
+          "name": "Шоколад Россия щедрая душа",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 110 }]
+        },
+        {
+          "id": "milka",
+          "name": "Милка",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 150 }]
+        }
+      ]
+    },
+    {
+      "id": "hot_drinks",
+      "name": "Горячие напитки",
+      "items": [
+        {
+          "id": "espresso",
+          "name": "Эспрессо",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 100 }]
+        },
+        {
+          "id": "americano",
+          "name": "Американо",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 100 }]
+        },
+        {
+          "id": "latte",
+          "name": "Латте",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 160 }]
+        },
+        {
+          "id": "cappuccino",
+          "name": "Капучино",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 150 }]
+        },
+        {
+          "id": "tea_chainaya",
+          "name": "Чай с чабрецом",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 170 }]
+        },
+        {
+          "id": "tea_green",
+          "name": "Чай зелёный",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 140 }]
+        },
+        {
+          "id": "tea_fruit",
+          "name": "Чай фруктовый",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 240 }]
+        },
+        {
+          "id": "tea_sea_buckthorn",
+          "name": "Чай облепиховый",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 260 }]
+        },
+        {
+          "id": "tea_assorted",
+          "name": "Чай в ассортименте",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 170 }]
+        }
+      ]
+    },
+    {
+      "id": "cold_drinks",
+      "name": "Холодные напитки",
+      "items": [
+        {
+          "id": "ice_latte",
+          "name": "Айс латте",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 200 }]
+        },
+        {
+          "id": "mojito_classic",
+          "name": "Мохито классик",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 170 }]
+        },
+        {
+          "id": "mojito_strawberry",
+          "name": "Мохито клубника",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 190 }]
+        },
+        {
+          "id": "mojito_tropic",
+          "name": "Мохито тропик",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 190 }]
+        },
+        {
+          "id": "milkshake_vanilla",
+          "name": "Коктейль молочный (ваниль)",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 190 }]
+        },
+        {
+          "id": "milkshake_chocolate",
+          "name": "Коктейль молочный (шоколад)",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 190 }]
+        },
+        {
+          "id": "milkshake_banana",
+          "name": "Коктейль молочный (банан)",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 190 }]
+        },
+        {
+          "id": "milkshake_strawberry",
+          "name": "Коктейль молочный (клубника)",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 190 }]
+        }
+      ]
+    },
+    {
+      "id": "pitcher_drinks",
+      "name": "Холодные напитки в графине",
+      "items": [
+        {
+          "id": "pitcher_mojito_classic",
+          "name": "Графин Мохито классик",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 450 }]
+        },
+        {
+          "id": "pitcher_mojito_strawberry",
+          "name": "Графин Мохито клубника",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 520 }]
+        },
+        {
+          "id": "pitcher_mojito_laguna",
+          "name": "Графин Мохито лагуна",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 520 }]
+        },
+        {
+          "id": "pitcher_mojito_tropic",
+          "name": "Графин Мохито тропик",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 520 }]
+        }
+      ]
+    },
+    {
+      "id": "assorted_drinks",
+      "name": "Напитки в ассортименте",
+      "items": [
+        {
+          "id": "ot_vinta",
+          "name": "От винта",
+          "description": "",
+          "variants": [{ "id": "std", "label": "0.5 л", "price": 90 }]
+        },
+        {
+          "id": "juice_natural",
+          "name": "Натуральный сок",
+          "description": "",
+          "variants": [{ "id": "std", "label": "1 л", "price": 150 }]
+        },
+        {
+          "id": "cola",
+          "name": "Кола",
+          "description": "",
+          "variants": [{ "id": "std", "label": "1 л", "price": 120 }]
+        },
+        {
+          "id": "fanta",
+          "name": "Фанта",
+          "description": "",
+          "variants": [{ "id": "std", "label": "1 л", "price": 120 }]
+        },
+        {
+          "id": "palpi_1l",
+          "name": "Палпи",
+          "description": "",
+          "variants": [{ "id": "std", "label": "1 л", "price": 150 }]
+        },
+        {
+          "id": "palpi_05l",
+          "name": "Палпи",
+          "description": "",
+          "variants": [{ "id": "std", "label": "0.5 л", "price": 80 }]
+        },
+        {
+          "id": "soda_can",
+          "name": "Газировка",
+          "description": "",
+          "variants": [{ "id": "std", "label": "0.33 л (ж/б)", "price": 80 }]
+        },
+        {
+          "id": "water",
+          "name": "Вода",
+          "description": "",
+          "variants": [{ "id": "std", "label": "", "price": 50 }]
+        },
+        {
+          "id": "kids_juice",
+          "name": "Сок с трубочкой (детский)",
+          "description": "",
+          "variants": [{ "id": "std", "label": "0.2 л", "price": 50 }]
         }
       ]
     }
