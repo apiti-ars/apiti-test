@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Меню</title>
+<meta name="description" content="Меню кафе">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23ff6b1a'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <h1 id="name">Меню</h1>
+    <div class="info">
+      <div class="chip-info"><span class="lbl">График</span><div id="hours"></div></div>
+      <div class="chip-info"><span class="lbl">Телефон</span><a id="phone" href="#"></a></div>
+      <div class="chip-info" id="addr-box" hidden><span class="lbl">Адрес</span><div id="address"></div></div>
+    </div>
+  </div>
+</header>
+
+<nav class="cats" aria-label="Категории"><div class="wrap" id="cats"></div></nav>
+
+<main class="wrap" id="menu" aria-live="polite">
+  <p class="muted">Загрузка меню…</p>
+</main>
+
+<footer class="wrap foot"><p id="legal" class="muted"></p></footer>
+
+<button class="cart-fab" id="cartBtn" hidden aria-label="Открыть корзину">
+  <span>Корзина</span><span class="badge" id="cartCount">0</span><span id="cartTotal"></span>
+</button>
+
+<dialog id="cart" aria-label="Корзина">
+  <div class="sheet-head">
+    <h2>Корзина</h2>
+    <button class="icon" id="cartClose" aria-label="Закрыть">✕</button>
+  </div>
+  <div id="cartList" class="cart-list"></div>
+  <div class="sheet-foot">
+    <div class="total"><span>Итого</span><strong id="sheetTotal">0 ₽</strong></div>
+    <p class="call">Оплата на сайте не предусмотрена. Для заказа позвоните по номеру <a id="callLink" href="#"></a> или обратитесь к официанту.</p>
+    <button class="btn ghost" id="clearBtn">Очистить корзину</button>
+  </div>
+</dialog>
+
+<script src="app.js"></script>
+</body>
+</html>
