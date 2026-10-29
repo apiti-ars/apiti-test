@@ -12,6 +12,7 @@
 
   let cart = {};          // "itemId|variantId" -> qty
   const index = {};       // key -> {item, variant}
+  let confirmTimer = null;
 
   const loadCart = () => {
     try { cart = JSON.parse(localStorage.getItem(LS_KEY)) || {}; } catch { cart = {}; }
@@ -70,13 +71,26 @@
       t.append(el('span', null, item.name));
       t.append(el('small', null, [variant.label, fmt(variant.price)].filter(Boolean).join(' · ')));
       const s = el('div'); s.append(stepper(k));
-      line.append(t, s, el('b', null, fmt(cart[k] * variant.price)));
+      line.append(t, s, el('b', 'sum', fmt(cart[k] * variant.price)));
       list.append(line);
     }
   };
 
+  // Очистка корзины: двухшаговое подтверждение, само откатывается через 5 секунд
+  const resetConfirm = () => {
+    clearTimeout(confirmTimer);
+    $('confirmBox').hidden = true;
+    $('clearBtn').hidden = false;
+  };
+  const askConfirm = () => {
+    $('clearBtn').hidden = true;
+    $('confirmBox').hidden = false;
+    $('clearNo').focus();
+    confirmTimer = setTimeout(resetConfirm, 5000);
+  };
+
   const render = (data) => {
-    document.title = `${data.name} — меню`;
+    document.title = `${data.name}`;
     $('name').textContent = data.name;
     const tel = (data.phone || '').replace(/[^\d+]/g, '');
     for (const id of ['phone', 'callLink']) { $(id).textContent = data.phone; $(id).href = 'tel:' + tel; }
@@ -84,9 +98,12 @@
     if (data.address) { $('address').textContent = data.address; $('addr-box').hidden = false; }
     $('legal').textContent = data.legal || '';
 
+    // приоритет категорий: больше число — выше в списке; без priority = 0, порядок файла сохраняется
+    const sorted = [...data.categories].sort((a, b) => (Number(b.priority) || 0) - (Number(a.priority) || 0));
+
     const menu = $('menu'), cats = $('cats');
     menu.replaceChildren();
-    for (const c of data.categories) {
+    for (const c of sorted) {
       const a = el('a', null, c.name); a.href = '#cat-' + c.id; cats.append(a);
       const sec = el('section'); sec.id = 'cat-' + c.id;
       sec.append(el('h2', null, c.name));
@@ -120,7 +137,7 @@
       menu.append(sec);
     }
 
-    // убрать из корзины позиции, которых больше нет в меню
+    // убрать из корзины позиции, которых больше нет
     for (const k of Object.keys(cart)) if (!index[k]) delete cart[k];
     saveCart();
     refresh();
@@ -138,11 +155,14 @@
   $('cartBtn').onclick = () => $('cart').showModal();
   $('cartClose').onclick = () => $('cart').close();
   $('cart').addEventListener('click', (e) => { if (e.target === $('cart')) $('cart').close(); });
-  $('clearBtn').onclick = () => { cart = {}; saveCart(); refresh(); };
+  $('cart').addEventListener('close', resetConfirm);
+  $('clearBtn').onclick = askConfirm;
+  $('clearNo').onclick = resetConfirm;
+  $('clearYes').onclick = () => { resetConfirm(); cart = {}; saveCart(); refresh(); };
 
   loadCart();
   fetch('menu.json', { cache: 'no-cache' })
     .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(render)
-    .catch(() => { console.error(e);  $('menu').replaceChildren(el('p', 'muted', 'Не удалось загрузить меню. Обновите страницу.')); });
+    .catch(() => { $('menu').replaceChildren(el('p', 'muted', 'Не удалось загрузить. Обновите страницу.')); });
 })();
