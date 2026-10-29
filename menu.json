@@ -1,6 +1,6 @@
 {
   "name": "Апити",
-  "tagline": "Меню",
+  "tagline": "Апити",
   "phone": "8 (928) 319-89-16",
   "address": "Терекли-Мектеб, ул. Северная, 9",
   "hours": [
@@ -654,27 +654,24 @@
         },
         {
           "id": "cola",
-          "name": "Кола",
+          "name": "Добрый Кола",
           "description": "",
           "variants": [{ "id": "std", "label": "1 л", "price": 120 }]
         },
         {
           "id": "fanta",
-          "name": "Фанта",
+          "name": "Добрый Апельсин",
           "description": "",
           "variants": [{ "id": "std", "label": "1 л", "price": 120 }]
         },
         {
-          "id": "palpi_1l",
+          "id": "palpi",
           "name": "Палпи",
           "description": "",
-          "variants": [{ "id": "std", "label": "1 л", "price": 150 }]
-        },
-        {
-          "id": "palpi_05l",
-          "name": "Палпи",
-          "description": "",
-          "variants": [{ "id": "std", "label": "0.5 л", "price": 80 }]
+          "variants": [
+            { "id": "1", "label": "1 л", "price": 150 },
+            { "id": "05", "label": "0.5 л", "price": 80 }
+          ]
         },
         {
           "id": "soda_can",
