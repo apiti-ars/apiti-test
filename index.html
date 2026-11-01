@@ -21,7 +21,23 @@
   </div>
 </header>
 
-<nav class="cats" aria-label="Категории"><div class="wrap" id="cats"></div></nav>
+<nav class="cats" aria-label="Поиск и категории">
+  <div class="wrap">
+    <div class="search">
+      <div class="field">
+        <svg class="mag" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="q" type="search" placeholder="Поиск по меню" aria-label="Поиск по меню" enterkeyhint="search" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="60">
+        <button type="button" class="x" id="qClear" aria-label="Очистить поиск" hidden>✕</button>
+      </div>
+      <div class="tools" id="sTools" hidden>
+        <span id="sCount" aria-live="polite"></span>
+        <button type="button" class="icon" id="sPrev" aria-label="Предыдущее совпадение">↑</button>
+        <button type="button" class="icon" id="sNext" aria-label="Следующее совпадение">↓</button>
+      </div>
+    </div>
+    <div class="chips" id="cats"></div>
+  </div>
+</nav>
 
 <main class="wrap" id="menu" aria-live="polite">
   <p class="muted">Загрузка…</p>
