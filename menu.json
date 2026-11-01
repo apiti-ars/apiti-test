@@ -683,7 +683,7 @@
           "id": "water",
           "name": "Вода",
           "description": "",
-          "variants": [{ "id": "std", "label": "", "price": 50 }]
+          "variants": [{ "id": "std", "label": "0.5 л", "price": 50 }]
         },
         {
           "id": "kids_juice",
