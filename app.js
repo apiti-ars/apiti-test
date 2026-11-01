@@ -12,6 +12,7 @@
 
   let cart = {};          // "itemId|variantId" -> qty
   const index = {};       // key -> {item, variant}
+  const entries = [];     // для поиска: категории и блюда в порядке на странице
   let confirmTimer = null;
 
   const loadCart = () => {
@@ -89,6 +90,96 @@
     confirmTimer = setTimeout(resetConfirm, 5000);
   };
 
+  /* ---------- Поиск (всё локально: ничего не отправляется и не сохраняется) ---------- */
+  const nav = document.querySelector('.cats');
+  const qIn = $('q');
+  let results = [], cur = -1, timer = null, pushed = false;
+
+  const norm = (s) => s.toLowerCase().replace(/ё/g, 'е').replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+  const hasWord = (text, t) => (' ' + text).includes(' ' + t);   // слово начинается с t
+
+  // Блюдо: все слова запроса есть в «название + категория», и хотя бы одно — в самом названии.
+  // Если есть блюда — показываем их; иначе — категории.
+  const find = (text) => {
+    const tokens = norm(text).split(' ').filter(Boolean);
+    if (norm(text).length < 2) return [];
+    const items = entries.filter((e) => e.kind === 'item'
+      && tokens.every((t) => hasWord(e.own + ' ' + e.cat, t))
+      && tokens.some((t) => hasWord(e.own, t)));
+    if (items.length) return items;
+    return entries.filter((e) => e.kind === 'cat' && tokens.every((t) => hasWord(e.own, t)));
+  };
+
+  const flash = (node, strong) => {
+    node.classList.remove('hit', 'hit-cur');
+    void node.offsetWidth;                       // перезапуск анимации
+    node.classList.add(strong ? 'hit-cur' : 'hit');
+  };
+
+  const updateUI = () => {
+    const has = qIn.value.trim() !== '';
+    $('qClear').hidden = !has;
+    $('sTools').hidden = !has;
+    $('sCount').textContent = !has ? '' : results.length ? `${Math.max(cur, 0) + 1} из ${results.length}` : 'Не найдено';
+    $('sPrev').disabled = $('sNext').disabled = results.length < 2;
+  };
+
+  const go = (i) => {
+    if (!results.length) return;
+    cur = (i + results.length) % results.length;
+    results[cur].scroll.scrollIntoView({ block: 'start' });
+    results.forEach((r, k) => flash(r.flash, k === cur));
+    updateUI();
+  };
+
+  const run = () => {
+    timer = null;
+    results = find(qIn.value);
+    cur = -1;
+    if (results.length) go(0); else updateUI();
+  };
+
+  const resetSearch = () => {
+    clearTimeout(timer); timer = null;
+    qIn.value = ''; results = []; cur = -1;
+    updateUI();
+  };
+  // Закрыть поиск; если мы добавляли запись в историю — убираем её, чтобы «Назад» не накапливался
+  const closeSearch = () => {
+    const had = pushed; pushed = false;
+    resetSearch();
+    if (had) history.back();
+  };
+
+  qIn.addEventListener('input', () => {
+    if (qIn.value.trim() === '') { closeSearch(); return; }
+    if (!pushed) { history.pushState({ search: true }, ''); pushed = true; }   // «Назад» закроет поиск, а не сайт
+    updateUI();
+    clearTimeout(timer);
+    timer = setTimeout(run, 300);
+  });
+  qIn.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { closeSearch(); qIn.blur(); return; }
+    if (e.key !== 'Enter') return;
+    e.preventDefault();
+    if (timer) { clearTimeout(timer); run(); }
+    else if (cur < 0) go(0);
+    else go(cur + (e.shiftKey ? -1 : 1));
+    if (matchMedia('(pointer:coarse)').matches) qIn.blur();    // на телефоне убрать клавиатуру
+  });
+  $('qClear').onclick = () => { closeSearch(); qIn.focus(); };
+  $('sNext').onclick = () => go(cur < 0 ? 0 : cur + 1);
+  $('sPrev').onclick = () => go(cur < 0 ? 0 : cur - 1);
+  window.addEventListener('popstate', () => {
+    if (pushed) { pushed = false; resetSearch(); qIn.blur(); }
+  });
+
+  // высота панели нужна, чтобы найденное не пряталось под ней
+  const setNavH = () => document.documentElement.style.setProperty('--nav-h', nav.offsetHeight + 'px');
+  new ResizeObserver(setNavH).observe(nav);
+  setNavH();
+
+  /* ---------- Меню ---------- */
   const render = (data) => {
     document.title = `${data.name}`;
     $('name').textContent = data.name;
@@ -103,10 +194,17 @@
 
     const menu = $('menu'), cats = $('cats');
     menu.replaceChildren();
+    entries.length = 0;
     for (const c of sorted) {
-      const a = el('a', null, c.name); a.href = '#cat-' + c.id; cats.append(a);
       const sec = el('section'); sec.id = 'cat-' + c.id;
-      sec.append(el('h2', null, c.name));
+      const h2 = el('h2', null, c.name);
+      sec.append(h2);
+      entries.push({ kind: 'cat', scroll: h2, flash: h2, own: norm(c.name), cat: '' });
+
+      const a = el('a', null, c.name); a.href = '#cat-' + c.id;
+      a.addEventListener('click', (e) => { e.preventDefault(); h2.scrollIntoView({ block: 'start' }); });   // без записей в истории
+      cats.append(a);
+
       const grid = el('div', 'grid');
       for (const it of c.items) {
         const card = el('article', 'card');
@@ -117,7 +215,9 @@
           card.append(img);
         }
         const body = el('div', 'body');
-        body.append(el('h3', null, it.name));
+        const h3 = el('h3', null, it.name);
+        body.append(h3);
+        entries.push({ kind: 'item', scroll: card, flash: h3, own: norm(it.name), cat: norm(c.name) });
         if (it.description) body.append(el('p', 'desc', it.description));
         for (const v of it.variants) {
           const key = `${it.id}|${v.id}`;
@@ -141,6 +241,7 @@
     for (const k of Object.keys(cart)) if (!index[k]) delete cart[k];
     saveCart();
     refresh();
+    setNavH();
 
     // подсветка активной категории
     const links = [...cats.querySelectorAll('a')];
@@ -148,7 +249,7 @@
       es.forEach((e) => {
         if (e.isIntersecting) links.forEach((l) => l.classList.toggle('on', l.hash === '#' + e.target.id));
       });
-    }, { rootMargin: '-80px 0px -70% 0px' });
+    }, { rootMargin: `-${nav.offsetHeight + 8}px 0px -70% 0px` });
     menu.querySelectorAll('section').forEach((s) => io.observe(s));
   };
 
